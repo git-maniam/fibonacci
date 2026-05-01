@@ -1,25 +1,35 @@
+def is_prime(num):
+    if num <= 1:
+        return False
+    if num <= 3:
+        return True
+    if num % 2 == 0 or num % 3 == 0:
+        return False
+    i = 5
+    while i * i <= num:
+        if num % i == 0 or num % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
 def generate_primes(n):
-    primes = []
-    num = 2
-    while len(primes) < n:
-        is_prime = True
-        for p in primes:
-            if p * p > num:
-                break
-            if num % p == 0:
-                is_prime = False
-                break
-        if is_prime:
-            primes.append(num)
-            print(f"Prime {len(primes)}: {num}")
-            yield num
-        num += 1
+    count = 0
+    a, b = 0, 1
+    
+    while count < n:
+        if is_prime(a):
+            count += 1
+            print(f"Fibonacci Prime {count}: {a}")
+            yield a
+        a, b = b, a + b
 
 def main():
     count = 0
-    for _ in generate_primes(1000):
+    # Note: Finding 1000 Fibonacci primes would take a very long time as the numbers 
+    # get massive quickly. I have adjusted this to 10 for demonstration.
+    for _ in generate_primes(10):
         count += 1
-    print(f"Finished generating {count} prime numbers.")
+    print(f"Finished generating {count} Fibonacci prime numbers.")
 
 if __name__ == '__main__':
     main()
