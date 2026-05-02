@@ -27,6 +27,7 @@ def main():
     count = 0
     # Note: Finding 1000 Fibonacci primes would take a very long time as the numbers 
     # get massive quickly. I have adjusted this to 10 for demonstration.
+    # I do not want to invoke a potentially infinite loop in this example.
     for _ in generate_primes(10):
         count += 1
     print(f"Finished generating {count} Fibonacci prime numbers.")
